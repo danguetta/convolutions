@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Convolution Demo</title>
+        <link rel="stylesheet" href="style.css">
+
+        <!-- PyScript CSS -->
+        <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+        <!-- This script tag bootstraps PyScript -->
+        <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    </head>
+
+    <body>
+        <div id="loadingOverlay">
+            <div style="margin:120px"><center>
+                <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </center></div>
+            <div id="loading_message">
+                Loading...
+            </div>
+        </div>
+
+        <div class="container">
+            <h1>Understanding Convolutions</h1>
+            <center>
+                <button class="button" py-click="upload_image">Click here to select an image</button>
+                <br>
+                <br>
+                <div id="image_section" style="display:none">
+                    <canvas id            = "canvas"
+                            style         = "cursor:crosshair"
+                            py-mousedown  = "handle_mouse_down"
+                            py-mousemove  = "handle_mouse_move"
+                            py-mouseup    = "handle_mouse_up"
+                            py-mouseleave = "handle_mouse_up"></canvas>
+                    <br>
+                    <br>
+                    Click and drag to select the part of the image you'd like to use - click and drag again to modify
+                    <br>
+                </div>
+                <div id="download_section" style="display:none">
+                    <button class="button" py-click="download_excel">Click here to download</button>
+                    <br><br>
+                </div>
+                <br>
+                <hr>
+                (C) Daniel Guetta, 2024
+            </center>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const userAgent = navigator.userAgent;
+                const isChrome = userAgent.includes("Chrome") && !userAgent.includes("Edg");
+                const isEdge = userAgent.includes("Edg");
+            
+                if (!isChrome && !isEdge) {
+                    alert("This site is only supported on Chrome and Edge browsers. Please switch to one of these browsers to continue.");
+                    window.location.href = "https://www.google.com";
+                }
+            });
+        </script>
+
+        <script type="py" src="main.py" config='{"packages":["openpyxl", "pillow", "numpy", "requests"]}'></script>
+    </body>
+</html>

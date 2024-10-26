@@ -33,12 +33,20 @@ async def upload_image(event):
     '''
     global image
 
-    file = await (await js.window.showOpenFilePicker())[0].getFile();
-    image = js.Image.new()
-    image.src = js.URL.createObjectURL(file)
+    try:
+        file = await (await js.window.showOpenFilePicker())[0].getFile()
+        
+        if file.name.split('.')[-1] not in ['png', 'jpg', 'jpeg']:
+            js.alert("Please choose a PNG or JPG file")
+            return
 
-    # Once the image has loaded, draw it on the canvas
-    image.onload = lambda e: display_image(image)
+        image = js.Image.new()
+        image.src = js.URL.createObjectURL(file)
+
+        # Once the image has loaded, draw it on the canvas
+        image.onload = lambda e: display_image(image)
+    except:
+        pass
 
 async def download_excel(event):
     '''

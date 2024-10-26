@@ -84,22 +84,13 @@ async def download_excel(event):
     # Convert to a numpy array
     final_im = 255 - np.array(final_im)
 
-    print('test1')
-
     # Load the Excel file, and put the image in it
     # --------------------------------------------
     wb = openpyxl.load_workbook(io.BytesIO(requests.get(workbook_url).content), keep_vba=True)
-    
-    print('test2')
-
-    print(final_im.shape)
-    print(wb['Sheet1']['K18'].value)
 
     for i in range(200):
         for j in range(194):
             wb['Sheet1'][openpyxl.utils.get_column_letter(first_col + j) + str(first_row + i)] = final_im[i, j]
-
-    print(wb['Sheet1']['K18'].value)
 
     # Save the Excel file
     # -------------------

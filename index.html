@@ -50,12 +50,8 @@
 
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                const userAgent = navigator.userAgent;
-                const isChrome = userAgent.includes("Chrome") && !userAgent.includes("Edg");
-                const isEdge = userAgent.includes("Edg");
-            
-                if (!isChrome && !isEdge) {
-                    alert("This site is only supported on Chrome and Edge browsers. Please switch to one of these browsers to continue.");
+                if (!('showOpenFilePicker' in window)) {
+                    alert("This site is only supported on Chrome and Edge browsers on desktop computers. Please switch to one of these browsers to continue.");
                     window.location.href = "https://www.google.com";
                 }
             });

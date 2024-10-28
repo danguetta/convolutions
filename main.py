@@ -198,9 +198,10 @@ def draw_selection(draw=True):
             ctx.lineWidth = 2
             ctx.strokeRect(x, y, side, side)
     
-        # Return (x, y, side)
+    # Return (x, y, side)
+    try:
         return (x, y, side)
-    else:
+    except:
         return (0, 0, max_dimension)
 
 # Remove the loading overlay
